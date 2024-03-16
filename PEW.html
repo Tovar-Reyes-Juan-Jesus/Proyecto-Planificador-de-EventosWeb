@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Planificador de Eventos Web</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+  <link href="calendarorganizer.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="estilos1.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.js" defer></script>
+  <script src="script.js" defer></script>
+
+
+	
+
+</head>
+<body>
+
+	
+
+	<div class="titulo text-center">
+		<h2>Planificador de Eventos Web</h2>
+	</div>
+	
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		  <div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>                        
+			</button>
+			
+			</div>
+		  
+		  <div class="collapse navbar-collapse" id="myNavbar">  
+			<ul class="nav navbar-nav">
+			  <li data-target="RegistrarEvento"><a href="#">RegistrarEvento</a></li>
+			  <li data-target="Proveedores"><a href="#">Proveedores</a></li>
+			  <li data-target="Presupuesto"><a href="#">Presupuesto</a></li>
+			  <li data-target="Informe"><a href="#">Informe</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+			  <li data-target="Login"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+
+
+	  
+
+
+		
+	  <div class="container-fluid text-center">
+		
+		<!--Contenido de la linea del menu del proyecto-->  
+		<div class="row content">
+
+		  <div data-target="RegistrarEvento"  class="col-sm-8 text-left"> 
+			<h3>hola1</h3>
+			<p>ejemplo1</p>
+		  </div>
+		  <!--Seccion del Calendario-->
+		  <div data-target="RegistrarEvento" class="col-sm-4 col-sidebar special-column">
+			<div class="well">
+				<!--Empieza el calendario-->
+				<iframe id="calendar-iframe" src="https://calendar.google.com/calendar/embed?src=juan04gamer%40gmail.com&ctz=America%2FMexico_City" frameborder="0" scrolling="no"></iframe>
+				<!--Fin de la seccion del Calendario-->
+			</div>
+		  </div>
+		  <!--Fin de la seccion-->
+
+		  <div data-target="Proveedores" class="col-sm-8 text-left">
+			<h3>hola2</h3> 
+		  </div>
+		  <!--Seccion del Calendario-->
+		  <div data-target="Proveedores" class="col-sm-4 col-sidebar special-column">
+			<div class="well">
+				<iframe id="calendar-iframe" src="https://calendar.google.com/calendar/embed?src=juan04gamer%40gmail.com&ctz=America%2FMexico_City" frameborder="0" scrolling="no"></iframe>
+			</div>
+		  </div>
+		  <!--Fin de la seccion-->
+		  <div data-target="Presupuesto" class="col-sm-8 text-left">
+			<h3>Hola mundo2</h3> 
+		  </div>
+		  <!--Seccion del Calendario-->
+		  <div data-target="Presupuesto" class="col-sm-4 col-sidebar special-column">
+			<div class="well">
+				<iframe id="calendar-iframe" src="https://calendar.google.com/calendar/embed?src=juan04gamer%40gmail.com&ctz=America%2FMexico_City" frameborder="0" scrolling="no"></iframe>
+			</div>
+		  </div>
+		  <!--Fin de la seccion-->
+		  <div data-target="Informe" class="col-sm-8 text-left">
+			<h3>Hola mundo3</h3>
+		  </div>
+		  <!--Seccion del Calendario-->
+		  <div data-target="Informe" class="col-sm-4 col-sidebar special-column">
+			<div class="well">
+				<iframe id="calendar-iframe" src="https://calendar.google.com/calendar/embed?src=juan04gamer%40gmail.com&ctz=America%2FMexico_City" frameborder="0" scrolling="no"></iframe>
+			</div>
+		  </div>
+		  <!--Fin de la seccion-->
+		  <div data-target="Login">
+			<h1>Iniciar Sesión</h1>
+  					<form>
+    					<div class="form-group">
+      					<label for="username">Nombre de Usuario:</label>
+      					<input type="text" class="form-control text-center" id="username" placeholder="Ingresa tu nombre de usuario" required>
+    					</div>
+    				<div class="form-group">
+      					<label for="password">Contraseña:</label>
+      					<input type="password" class="form-control text-center" id="password" placeholder="Ingresa tu contraseña" required>
+    				</div>
+    			<button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+				
+				</form>
+				 <!-- Botón de registro -->
+				 <button type="button" class="btn btn-default" id="btn-register">Registrarse</button>
+		  </div>
+
+		  <!-- Formulario de registro (oculto inicialmente) -->
+		<div id="register-form" style="display: none;" class="container-fluid text">
+	<h2>Registrarse</h2>
+	<form>
+	  <div class="form-group">
+		<label for="nombre">Nombre:</label>
+		<input type="text" class="form-control text-center" id="nombre" placeholder="Ingresa tu nombre" required>
+	  </div>
+	  <div class="form-group">
+		<label for="apellido-paterno">Apellido Paterno:</label>
+		<input type="text" class="form-control text-center" id="apellido-paterno" placeholder="Ingresa tu Apellido Paterno" required>
+	  </div>
+	  <div class="form-group">
+		<label for="apellido-materno">Apellido Materno:</label>
+		<input type="text" class="form-control text-center" id="apellido-materno" placeholder="Ingresa tu Apellido Materno" required>
+	  </div>
+	  <div class="form-group">
+		<label for="correo">Correo Electrónico:</label>
+		<input type="email" class="form-control text-center" id="correo" placeholder="Ingrese su correo Electronico" required>
+	  </div>
+	  <div class="form-group">
+		<label for="telefono">Número Telefónico:</label>
+		<input type="tel" class="form-control text-center" id="telefono" placeholder="Ingrese su numero telefonico" required>
+	  </div>
+	  <div class="form-group">
+		<label for="password">Contraseña:</label>
+		<input type="password" class="form-control text-center" id="password" placeholder="ingrese una Contraseña segura" required>
+	  </div>
+	  <button type="submit" class="btn btn-primary">Registrarse</button>
+	</form>
+</div>
+
+
+		
+</div>
+
+
+
+	</div>
+
+	
+	  
+	  <footer class="Pie de Pagina" style="position: fixed;">
+		<p>Pie de Pagina</p>
+	  </footer>
+
+
+
+
+</body>
+</html>
