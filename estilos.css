@@ -45,7 +45,16 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 10; /* Asegura que el footer esté encima de otros elementos */
+  background-color: #555;
+  color: white;
+  padding: 5px;
 }
+
+.main-content {
+  margin-bottom: 20px; /* Ajusta este valor según el tamaño de tu footer */
+}
+
 
 
 /* Estilo para la columna de contenido */
