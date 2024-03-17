@@ -427,3 +427,42 @@ function formatDate(date) {
 
 
 //Cerrar seccion de Calendario
+
+
+//Seccion de Registrar Evento
+$(document).ready(function() {
+  // Otras funciones aquí
+
+  // Manejar clic en el botón de agregar invitado
+  $("#btnAgregarInvitado").click(function() {
+      $("#tablaInvitados tbody").append(
+          `<tr>
+              <td><input type="text" class="form-control" placeholder="Nombre" required></td>
+              <td><input type="tel" class="form-control" placeholder="Teléfono" required></td>
+              <td><input type="email" class="form-control" placeholder="Correo" required></td>
+              <td><button type="button" class="btn btn-danger btnEliminarFila">Eliminar</button></td>
+          </tr>`
+      );
+  });
+
+  // Manejar clic en el botón de eliminar invitado
+  $("#tablaInvitados").on("click", ".btnEliminarFila", function() {
+      $(this).closest("tr").remove();
+  });
+
+  // Manejar envío del formulario de registro de evento
+  $("#registroEventoForm").submit(function(event) {
+      event.preventDefault();
+
+      // Obtener los valores del formulario
+      var nombreEvento = $("#nombreEvento").val();
+      var fechaEvento = $("#fechaEvento").val();
+      var horaEvento = $("#horaEvento").val();
+      var ubicacionEvento = $("#ubicacionEvento").val();
+      var tipoEvento = $("#tipoEvento").val();
+      var invitacionEvento = $("#invitacionEvento").val();
+      // Aquí puedes continuar con la lógica para procesar los datos del formulario
+  });
+});
+
+//Fin de la Seccion de Registrar Evento
