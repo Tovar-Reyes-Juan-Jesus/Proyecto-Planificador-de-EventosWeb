@@ -64,9 +64,59 @@
 		<!--Contenido de la linea del menu del proyecto-->  
 		<div class="row content">
 
-		  <div data-target="RegistrarEvento"  class="col-sm-8 text-left"> 
-			<h3>hola1</h3>
-			<p>ejemplo1</p>
+		  <div data-target="RegistrarEvento"  class="col-sm-8 text-left">
+			<!--Seccion de Registrar Evento-->
+			<h3>Registrar Evento</h3>
+    <form id="registroEventoForm">
+        <div class="form-group">
+            <label for="nombreEvento">Nombre del Evento:</label>
+            <input type="text" class="form-control" id="nombreEvento" placeholder="Ingrese el nombre del evento" required>
+        </div>
+        <div class="form-group">
+            <label for="fechaEvento">Fecha:</label>
+            <input type="date" class="form-control" id="fechaEvento" required>
+        </div>
+        <div class="form-group">
+            <label for="horaEvento">Hora:</label>
+            <input type="time" class="form-control" id="horaEvento" required>
+        </div>
+        <div class="form-group">
+            <label for="ubicacionEvento">Ubicación:</label>
+            <input type="text" class="form-control" id="ubicacionEvento" placeholder="Ingrese la ubicación del evento" required>
+        </div>
+        <div class="form-group">
+            <label for="tipoEvento">Tipo de Evento:</label>
+            <select class="form-control" id="tipoEvento" required>
+                <option value="comunion">Comunión</option>
+                <option value="bautizo">Bautizo</option>
+                <option value="confirmacion">Confirmación</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="invitacionEvento">Invitación:</label>
+            <input type="file" class="form-control-file" id="invitacionEvento">
+        </div>
+        <div class="form-group">
+            <label>Invitados:</label>
+            <table class="table" id="tablaInvitados">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se agregarán las filas de invitados dinámicamente -->
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-primary" id="btnAgregarInvitado">Agregar Invitado</button>
+            <button type="button" class="btn btn-danger" id="btnEliminarInvitado">Eliminar Invitado</button>
+        </div>
+        <button type="submit" class="btn btn-success">Registrar Evento</button>
+    </form>
+			<!--Fin de la seccion de Registrar Evento-->
 		  </div>
 		  <!--Seccion del Calendario-->
 		  <div data-target="RegistrarEvento" class="col-sm-4 col-sidebar special-column">
