@@ -129,7 +129,41 @@
 		  <!--Fin de la seccion-->
 
 		  <div data-target="Proveedores" class="col-sm-8 text-left">
-			<h3>hola2</h3> 
+			<h3>Proveedores</h3>
+    <p>¿Quieres un proveedor en específico? Búscalo</p>
+    <div class="form-group">
+        <label for="servicio">Servicio:</label>
+        <input type="text" class="form-control" id="servicio" placeholder="Ingrese el servicio que busca">
+    </div>
+    <div class="form-group">
+        <label for="ubicacion">Ubicación:</label>
+        <input type="text" class="form-control" id="ubicacion" placeholder="Ingrese la ubicación del servicio">
+    </div>
+    <button type="button" class="btn btn-primary">Buscar</button>
+
+    <!-- Resultados -->
+    <h1>Resultados</h1>
+    <div class="proveedores-container">
+        <div class="proveedor">
+            <img src="C:\Users\carom\Desktop\Planificador de Eventos Web\Proveedores\Proveedor1.jpg" alt="Proveedor">
+            <div class="proveedor-info">
+                <a href="https://www.proveedores.com/proveedores/panaderia-salazar/">Panaderia Salazar</a>
+                <label><input type="checkbox"> Seleccionar</label>
+            </div>
+        </div>
+		<div class="proveedor">
+            <img src="C:\Users\carom\Desktop\Planificador de Eventos Web\Proveedores\Proveedor2.jpg" alt="Proveedor">
+            <div class="proveedor-info">
+                <a href="https://www.proveedores.com/proveedores/juanito-baker/">Juanito Baker</a>
+                <label><input type="checkbox"> Seleccionar</label>
+            </div>
+        </div>
+        <!-- Repite este bloque de proveedor para cada resultado -->
+    </div>
+
+    <!-- Botones para confirmar o cancelar selección -->
+    <button type="button" class="btn btn-success">Confirmar Selección</button>
+    <button type="button" class="btn btn-danger">Cancelar Selección</button>
 		  </div>
 		  <!--Seccion del Calendario-->
 		  <div data-target="Proveedores" class="col-sm-4 col-sidebar special-column">
