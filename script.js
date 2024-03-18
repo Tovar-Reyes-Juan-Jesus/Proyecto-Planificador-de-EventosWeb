@@ -466,3 +466,39 @@ $(document).ready(function() {
 });
 
 //Fin de la Seccion de Registrar Evento
+
+//Seccion de Proveedores
+// Función para buscar proveedores
+function buscarProveedores() {
+  // Obtener valores de los campos de texto
+  var servicio = document.getElementById('servicio').value;
+  var ubicacion = document.getElementById('ubicacion').value;
+
+  // Realizar lógica de búsqueda y mostrar los resultados en la página
+}
+
+// Función para seleccionar/deseleccionar proveedores
+function toggleSeleccionado(checkbox) {
+  if (checkbox.checked) {
+      // Proveedor seleccionado
+  } else {
+      // Proveedor deseleccionado
+  }
+}
+
+// Función para confirmar selección de proveedores
+function confirmarSeleccion() {
+  var checkboxes = document.querySelectorAll('.proveedor input[type="checkbox"]');
+  var seleccionados = [];
+
+  checkboxes.forEach(function(checkbox) {
+      if (checkbox.checked) {
+          var proveedor = checkbox.closest('.proveedor');
+          var nombreProveedor = proveedor.querySelector('a').textContent;
+          seleccionados.push(nombreProveedor);
+      }
+  });
+
+  // Realizar alguna acción con los proveedores seleccionados
+}
+//Fin de la Seccion de Proveedores
