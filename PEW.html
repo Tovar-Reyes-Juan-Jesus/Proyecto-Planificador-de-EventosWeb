@@ -1,263 +1,461 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Planificador de Eventos Web</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="estilos.css">
-  <link href="calendarorganizer.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="estilos1.css">
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.js" defer></script>
-  <script src="script.js" defer></script>
+  <head>
+    <title>Planificador de Eventos Web</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      href="https://cdn.rawgit.com/nizarmah/calendar-javascript-lib/master/calendarorganizer.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="estilos.css" />
+    <link href="calendarorganizer.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="estilos1.css" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.min.js"
+      defer
+    ></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="titulo text-center">
+      <h2>Planificador de Eventos Web</h2>
+    </div>
 
-	
-
-</head>
-<body>
-
-	
-
-	<div class="titulo text-center">
-		<h2>Planificador de Eventos Web</h2>
-	</div>
-	
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-		  <div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-			  <span class="icon-bar"></span>
-			  <span class="icon-bar"></span>
-			  <span class="icon-bar"></span>                        
-			</button>
-			
-			</div>
-		  
-		  <div class="collapse navbar-collapse" id="myNavbar">  
-			<ul class="nav navbar-nav">
-			  <li data-target="RegistrarEvento"><a href="#">RegistrarEvento</a></li>
-			  <li data-target="Proveedores"><a href="#">Proveedores</a></li>
-			  <li data-target="Presupuesto"><a href="#">Presupuesto</a></li>
-			  <li data-target="Informe"><a href="#">Informe</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-			  <li data-target="Login"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-			</ul>
-		  </div>
-		</div>
-	  </nav>
-
-
-	  
-
-
-		
-	  <div class="container-fluid text-center">
-		
-		<!--Contenido de la linea del menu del proyecto-->  
-		<div class="row content">
-
-		  <div data-target="RegistrarEvento"  class="col-sm-8 text-left">
-			<!--Seccion de Registrar Evento-->
-			<h3>Registrar Evento</h3>
-    <form id="registroEventoForm">
-        <div class="form-group">
-            <label for="nombreEvento">Nombre del Evento:</label>
-            <input type="text" class="form-control" id="nombreEvento" placeholder="Ingrese el nombre del evento" required>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#myNavbar"
+          >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
         </div>
-        <div class="form-group">
-            <label for="fechaEvento">Fecha:</label>
-            <input type="date" class="form-control" id="fechaEvento" required>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li data-target="EventoSimple"><a href="#">Evento Simple</a></li>
+            <li data-target="RegistrarEvento"><a href="#">RegistrarEvento</a></li>
+            <li data-target="ListaDeseos"><a href="#">Lista de Deseos</a></li>
+            <li data-target="Proveedores"><a href="#">Proveedores</a></li>
+            <li data-target="Presupuesto"><a href="#">Presupuesto</a></li>
+            <li data-target="HorarioEve"><a href="#">Horario de Evento</a></li>
+            <li data-target="Informe"><a href="#">Informe</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li data-target="Login">
+              <a href="#"
+                ><span class="glyphicon glyphicon-log-in"></span> Login</a
+              >
+            </li>
+          </ul>
         </div>
-        <div class="form-group">
-            <label for="horaEvento">Hora:</label>
-            <input type="time" class="form-control" id="horaEvento" required>
+      </div>
+    </nav>
+
+    <div class="container-fluid text-center">
+      <!--Contenido de la linea del menu del proyecto-->
+      <div class="row content">
+        <!--Seccion Evento Simple-->
+        <div data-target="EventoSimple" class="col-sm-12 text-left">
+          <h1>Evento Simple</h1>
         </div>
-        <div class="form-group">
-            <label for="ubicacionEvento">Ubicación:</label>
-            <input type="text" class="form-control" id="ubicacionEvento" placeholder="Ingrese la ubicación del evento" required>
-        </div>
-        <div class="form-group">
-            <label for="tipoEvento">Tipo de Evento:</label>
-            <select class="form-control" id="tipoEvento" required>
+        <!--Fin de la Seccion Evento Simple-->
+
+        <!--Seccion Registrar Eventos-->
+        <div data-target="RegistrarEvento" class="col-sm-8 text-left">
+          <!--Seccion de Registrar Evento-->
+          <h3>Registrar Evento</h3>
+          <form id="registroEventoForm">
+            <div class="form-group">
+              <label for="nombreEvento">Nombre del Evento:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombreEvento"
+                placeholder="Ingrese el nombre del evento"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="fechaEvento">Fecha:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="fechaEvento"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="horaEvento">Hora:</label>
+              <input
+                type="time"
+                class="form-control"
+                id="horaEvento"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="ubicacionEvento">Ubicación:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="ubicacionEvento"
+                placeholder="Ingrese la ubicación del evento"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="tipoEvento">Tipo de Evento:</label>
+              <select class="form-control" id="tipoEvento" required>
                 <option value="comunion">Comunión</option>
                 <option value="bautizo">Bautizo</option>
                 <option value="confirmacion">Confirmación</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="invitacionEvento">Invitación:</label>
-            <input type="file" class="form-control-file" id="invitacionEvento">
-        </div>
-        <div class="form-group">
-            <label>Invitados:</label>
-            <table class="table" id="tablaInvitados">
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="invitacionEvento">Invitación:</label>
+              <input
+                type="file"
+                class="form-control-file"
+                id="invitacionEvento"
+              />
+            </div>
+            <div class="form-group">
+              <label>Invitados:</label>
+              <table class="table" id="tablaInvitados">
                 <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Teléfono</th>
-                        <th>Correo</th>
-                        <th></th>
-                    </tr>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th></th>
+                  </tr>
                 </thead>
                 <tbody>
-                    <!-- Aquí se agregarán las filas de invitados dinámicamente -->
+                  <!-- Aquí se agregarán las filas de invitados dinámicamente -->
                 </tbody>
-            </table>
-            <button type="button" class="btn btn-primary" id="btnAgregarInvitado">Agregar Invitado</button>
-            <button type="button" class="btn btn-danger" id="btnEliminarInvitado">Eliminar Invitado</button>
-        </div>
-        <button type="submit" class="btn btn-success">Registrar Evento</button>
-    </form>
-			<!--Fin de la seccion de Registrar Evento-->
-		  </div>
-		  <!--Seccion del Calendario-->
-		  <div data-target="RegistrarEvento" class="col-sm-4 col-sidebar special-column">
-			<div class="well">
-				<!--Empieza el calendario-->
-				<iframe id="calendar-iframe" src="https://calendar.google.com/calendar/embed?src=juan04gamer%40gmail.com&ctz=America%2FMexico_City" frameborder="0" scrolling="no"></iframe>
-				<!--Fin de la seccion del Calendario-->
-			</div>
-		  </div>
-		  <!--Fin de la seccion-->
-
-		  <div data-target="Proveedores" class="col-sm-8 text-left">
-			<h3>Proveedores</h3>
-    <p>¿Quieres un proveedor en específico? Búscalo</p>
-    <div class="form-group">
-        <label for="servicio">Servicio:</label>
-        <input type="text" class="form-control" id="servicio" placeholder="Ingrese el servicio que busca">
-    </div>
-    <div class="form-group">
-        <label for="ubicacion">Ubicación:</label>
-        <input type="text" class="form-control" id="ubicacion" placeholder="Ingrese la ubicación del servicio">
-    </div>
-    <button type="button" class="btn btn-primary">Buscar</button>
-
-    <!-- Resultados -->
-    <h1>Resultados</h1>
-    <div class="proveedores-container">
-        <div class="proveedor">
-            <img src="C:\Users\carom\Desktop\Planificador de Eventos Web\Proveedores\Proveedor1.jpg" alt="Proveedor">
-            <div class="proveedor-info">
-                <a href="https://www.proveedores.com/proveedores/panaderia-salazar/">Panaderia Salazar</a>
-                <label><input type="checkbox"> Seleccionar</label>
+              </table>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="btnAgregarInvitado"
+              >
+                Agregar Invitado
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                id="btnEliminarInvitado"
+              >
+                Eliminar Invitado
+              </button>
             </div>
+            <button type="submit" class="btn btn-success">
+              Registrar Evento
+            </button>
+          </form>
+          <!--Fin de la seccion de Registrar Evento-->
         </div>
-		<div class="proveedor">
-            <img src="C:\Users\carom\Desktop\Planificador de Eventos Web\Proveedores\Proveedor2.jpg" alt="Proveedor">
-            <div class="proveedor-info">
-                <a href="https://www.proveedores.com/proveedores/juanito-baker/">Juanito Baker</a>
-                <label><input type="checkbox"> Seleccionar</label>
+        <!--Seccion del Calendario-->
+        <div
+          data-target="RegistrarEvento"
+          class="col-sm-4 col-sidebar special-column"
+        >
+          <div class="well">
+            <!--Empieza el calendario-->
+            <iframe
+              id="calendar-iframe"
+              src="https://calendar.google.com/calendar/embed?src=juan04gamer%40gmail.com&ctz=America%2FMexico_City"
+              frameborder="0"
+              scrolling="no"
+            ></iframe>
+            <!--Fin de la seccion del Calendario-->
+          </div>
+        </div>
+        <!--Fin de la Seccion Registrar Evento-->
+
+        <!--Seccion de Lista de Deseos-->
+        <div data-target="ListaDeseos" class="col-sm-12 text-left">
+          <h1>Lista de deseos</h1>
+        </div>
+        <!--Fin de la Seccion de Lista de Deseos-->
+
+        <!--Seccion Proveedores-->
+        <div data-target="Proveedores" class="col-sm-12 text-left">
+          <h3>Proveedores</h3>
+          <p>¿Quieres un proveedor en específico? Búscalo</p>
+          <div class="form-group">
+            <label for="servicio">Servicio:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="servicio"
+              placeholder="Ingrese el servicio que busca"
+            />
+          </div>
+          <div class="form-group">
+            <label for="ubicacion">Ubicación:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="ubicacion"
+              placeholder="Ingrese la ubicación del servicio"
+            />
+          </div>
+          <button type="button" class="btn btn-primary">Buscar</button>
+
+          <!-- Formulario de registro de proveedor -->
+          <div
+            id="registroProveedorForm"
+            class="registro-proveedor-form"
+            style="display: none"
+          >
+            <h3>Registrar Proveedor</h3>
+            <form id="registroProveedor">
+              <div class="form-group">
+                <label for="nombreProveedor">Nombre:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombreProveedor"
+                  placeholder="Ingrese el nombre del proveedor"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="contactoProveedor">Contacto Telefónico:</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="contactoProveedor"
+                  placeholder="Ingrese el contacto telefónico del proveedor"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="correoProveedor">Correo Electrónico:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="correoProveedor"
+                  placeholder="Ingrese el correo electrónico del proveedor"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="imagenProveedor">Imagen:</label>
+                <input
+                  type="file"
+                  class="form-control-file"
+                  id="imagenProveedor"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-success">Registrar</button>
+            </form>
+          </div>
+          <!-- Fin del formulario de registro de proveedor -->
+
+          <!-- Botón para mostrar el formulario de registro -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="btnMostrarRegistroProveedor"
+          >
+            Registrar Proveedor LOCAL
+          </button>
+
+          <!-- Resultados -->
+          <h1>Resultados</h1>
+          <div class="proveedores-container">
+            <div class="proveedor">
+              <img
+                src="C:\Users\carom\Desktop\Planificador de Eventos Web\Proveedores\Proveedor1.jpg"
+                alt="Proveedor"
+              />
+              <div class="proveedor-info">
+                <a
+                  href="https://www.proveedores.com/proveedores/panaderia-salazar/"
+                  >Panaderia Salazar</a
+                >
+                <label><input type="checkbox" /> Seleccionar</label>
+              </div>
             </div>
+            <div class="proveedor">
+              <img
+                src="C:\Users\carom\Desktop\Planificador de Eventos Web\Proveedores\Proveedor2.jpg"
+                alt="Proveedor"
+              />
+              <div class="proveedor-info">
+                <a href="https://www.proveedores.com/proveedores/juanito-baker/"
+                  >Juanito Baker</a
+                >
+                <label><input type="checkbox" /> Seleccionar</label>
+              </div>
+            </div>
+            <!-- Repite este bloque de proveedor para cada resultado -->
+          </div>
+
+          <!-- Botones para confirmar o cancelar selección -->
+          <button type="button" class="btn btn-success">
+            Confirmar Selección
+          </button>
+          <button type="button" class="btn btn-danger">
+            Cancelar Selección
+          </button>
         </div>
-        <!-- Repite este bloque de proveedor para cada resultado -->
+        <!--Fin de la seccion Proveedores-->
+
+        <!--Seccion Presupuesto-->
+        <div data-target="Presupuesto" class="col-sm-12 text-left">
+          <h3>presupuesto</h3>
+        </div>
+        <!--Fin de la Seccion Presupuesto-->
+
+        <!--Seccion de Horario de Evento-->
+        <div data-target="HorarioEve" class="col-sm-12 text-left">
+          <h3>Horario</h3>
+        </div>
+        <!--Fin de la Seccion de Horario de Evento-->
+
+        <!--Seccion Informe-->
+        <div data-target="Informe" class="col-sm-12 text-left">
+          <h3>informe</h3>
+        </div>
+        <!--Fin de la Seccion Informe-->
+
+        <!--Seccion LOGIN-->
+        <div data-target="Login">
+          <h1>Iniciar Sesión</h1>
+          <form>
+            <div class="form-group">
+              <label for="username">Nombre de Usuario:</label>
+              <input
+                type="text"
+                class="form-control text-center"
+                id="username"
+                placeholder="Ingresa tu nombre de usuario"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña:</label>
+              <input
+                type="password"
+                class="form-control text-center"
+                id="password"
+                placeholder="Ingresa tu contraseña"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">
+              Iniciar Sesión
+            </button>
+          </form>
+          <!-- Botón de registro -->
+          <button type="button" class="btn btn-default" id="btn-register">
+            Registrarse
+          </button>
+        </div>
+        <!--Fin de la Seccion Login-->
+
+        <!-- Formulario de registro (oculto inicialmente) -->
+        <div
+          id="register-form"
+          style="display: none"
+          class="container-fluid text"
+        >
+          <h2>Registrarse</h2>
+          <form>
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input
+                type="text"
+                class="form-control text-center"
+                id="nombre"
+                placeholder="Ingresa tu nombre"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="apellido-paterno">Apellido Paterno:</label>
+              <input
+                type="text"
+                class="form-control text-center"
+                id="apellido-paterno"
+                placeholder="Ingresa tu Apellido Paterno"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="apellido-materno">Apellido Materno:</label>
+              <input
+                type="text"
+                class="form-control text-center"
+                id="apellido-materno"
+                placeholder="Ingresa tu Apellido Materno"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="correo">Correo Electrónico:</label>
+              <input
+                type="email"
+                class="form-control text-center"
+                id="correo"
+                placeholder="Ingrese su correo Electronico"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Número Telefónico:</label>
+              <input
+                type="tel"
+                class="form-control text-center"
+                id="telefono"
+                placeholder="Ingrese su numero telefonico"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña:</label>
+              <input
+                type="password"
+                class="form-control text-center"
+                id="password"
+                placeholder="ingrese una Contraseña segura"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+          </form>
+        </div>
+      </div>
     </div>
 
-    <!-- Botones para confirmar o cancelar selección -->
-    <button type="button" class="btn btn-success">Confirmar Selección</button>
-    <button type="button" class="btn btn-danger">Cancelar Selección</button>
-		  </div>
-		  <!--Seccion del Calendario-->
-		  <div data-target="Proveedores" class="col-sm-4 col-sidebar special-column">
-			<div class="well">
-				<iframe id="calendar-iframe" src="https://calendar.google.com/calendar/embed?src=juan04gamer%40gmail.com&ctz=America%2FMexico_City" frameborder="0" scrolling="no"></iframe>
-			</div>
-		  </div>
-		  <!--Fin de la seccion-->
-		  <div data-target="Presupuesto" class="col-sm-8 text-left">
-			<h3>Hola mundo2</h3> 
-		  </div>
-		  <!--Seccion del Calendario-->
-		  <div data-target="Presupuesto" class="col-sm-4 col-sidebar special-column">
-			<div class="well">
-				<iframe id="calendar-iframe" src="https://calendar.google.com/calendar/embed?src=juan04gamer%40gmail.com&ctz=America%2FMexico_City" frameborder="0" scrolling="no"></iframe>
-			</div>
-		  </div>
-		  <!--Fin de la seccion-->
-		  <div data-target="Informe" class="col-sm-8 text-left">
-			<h3>Hola mundo3</h3>
-		  </div>
-		  <!--Seccion del Calendario-->
-		  <div data-target="Informe" class="col-sm-4 col-sidebar special-column">
-			<div class="well">
-				<iframe id="calendar-iframe" src="https://calendar.google.com/calendar/embed?src=juan04gamer%40gmail.com&ctz=America%2FMexico_City" frameborder="0" scrolling="no"></iframe>
-			</div>
-		  </div>
-		  <!--Fin de la seccion-->
-		  <div data-target="Login">
-			<h1>Iniciar Sesión</h1>
-  					<form>
-    					<div class="form-group">
-      					<label for="username">Nombre de Usuario:</label>
-      					<input type="text" class="form-control text-center" id="username" placeholder="Ingresa tu nombre de usuario" required>
-    					</div>
-    				<div class="form-group">
-      					<label for="password">Contraseña:</label>
-      					<input type="password" class="form-control text-center" id="password" placeholder="Ingresa tu contraseña" required>
-    				</div>
-    			<button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-				
-				</form>
-				 <!-- Botón de registro -->
-				 <button type="button" class="btn btn-default" id="btn-register">Registrarse</button>
-		  </div>
-
-		  <!-- Formulario de registro (oculto inicialmente) -->
-		<div id="register-form" style="display: none;" class="container-fluid text">
-	<h2>Registrarse</h2>
-	<form>
-	  <div class="form-group">
-		<label for="nombre">Nombre:</label>
-		<input type="text" class="form-control text-center" id="nombre" placeholder="Ingresa tu nombre" required>
-	  </div>
-	  <div class="form-group">
-		<label for="apellido-paterno">Apellido Paterno:</label>
-		<input type="text" class="form-control text-center" id="apellido-paterno" placeholder="Ingresa tu Apellido Paterno" required>
-	  </div>
-	  <div class="form-group">
-		<label for="apellido-materno">Apellido Materno:</label>
-		<input type="text" class="form-control text-center" id="apellido-materno" placeholder="Ingresa tu Apellido Materno" required>
-	  </div>
-	  <div class="form-group">
-		<label for="correo">Correo Electrónico:</label>
-		<input type="email" class="form-control text-center" id="correo" placeholder="Ingrese su correo Electronico" required>
-	  </div>
-	  <div class="form-group">
-		<label for="telefono">Número Telefónico:</label>
-		<input type="tel" class="form-control text-center" id="telefono" placeholder="Ingrese su numero telefonico" required>
-	  </div>
-	  <div class="form-group">
-		<label for="password">Contraseña:</label>
-		<input type="password" class="form-control text-center" id="password" placeholder="ingrese una Contraseña segura" required>
-	  </div>
-	  <button type="submit" class="btn btn-primary">Registrarse</button>
-	</form>
-</div>
-
-
-		
-</div>
-
-
-
-	</div>
-
-	
-	  
-	  <footer class="Pie de Pagina" style="position: fixed;">
-		<p>Pie de Pagina</p>
-	  </footer>
-
-
-
-
-</body>
+    <footer class="Pie de Pagina" style="position: fixed">
+      <p>Pie de Pagina</p>
+    </footer>
+  </body>
 </html>
