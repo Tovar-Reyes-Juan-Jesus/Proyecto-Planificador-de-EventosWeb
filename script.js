@@ -1,10 +1,10 @@
 //REGISTRO
 
-$(document).ready(function() {
+$(document).ready(function () {
   // Otro código aquí
-  
+
   // Manejar clic en el botón de registro
-  $("#btn-register").click(function() {
+  $("#btn-register").click(function () {
     // Ocultar el contenido de inicio de sesión
     $("div[data-target='Login']").hide();
     // Mostrar el formulario de registro
@@ -12,31 +12,28 @@ $(document).ready(function() {
   });
 });
 
-
-
-
 //INICIAR SESION
 
-$(document).ready(function() {
+$(document).ready(function () {
   // Ocultar todos los contenidos de las pestañas excepto el primero
   $(".content > div").not(":first").hide();
-  
+
   // Manejar el clic en los elementos del menú
-  $("ul.navbar-nav li").click(function(){
+  $("ul.navbar-nav li").click(function () {
     var target = $(this).data("target");
     $(".content > div").hide();
     $("div[data-target='" + target + "']").show();
   });
-  
+
   // Manejar el envío del formulario de inicio de sesión
-  $("form").submit(function(event) {
+  $("form").submit(function (event) {
     // Evitar que el formulario se envíe de manera predeterminada
     event.preventDefault();
-    
+
     // Obtener los valores de los campos de entrada
     var username = $("#username").val();
     var password = $("#password").val();
-    
+
     // Aquí puedes agregar la lógica para validar el nombre de usuario y la contraseña
     // Por ejemplo, podrías enviar una solicitud AJAX al servidor para verificar las credenciales
   });
@@ -44,68 +41,67 @@ $(document).ready(function() {
 
 //CALENDARIO
 
-$(document).ready(function() {
-    $('#calendar').fullCalendar({
-      // Configuración del calendario aquí
-      // Por ejemplo:
-      defaultView: 'month',
-      events: [
-        // Aquí puedes proporcionar eventos para mostrar en el calendario
-      ]
-    });
+$(document).ready(function () {
+  $("#calendar").fullCalendar({
+    // Configuración del calendario aquí
+    // Por ejemplo:
+    defaultView: "month",
+    events: [
+      // Aquí puedes proporcionar eventos para mostrar en el calendario
+    ],
   });
-  
+});
 
 //MANEJO DE NAVEGACION
 
-const targets = document.querySelectorAll('[data-target]')
-const content = document.querySelectorAll('[data-content]')
+const targets = document.querySelectorAll("[data-target]");
+const content = document.querySelectorAll("[data-content]");
 
-$(document).ready(function(){
-    // Ocultar todos los contenidos de las pestañas excepto el primero
-    $(".content > div").not(":first").hide();
-    
-    // Manejar el clic en los elementos del menú
-    $("ul.navbar-nav li").click(function(){
-      var target = $(this).data("target");
-      $(".content > div").hide();
-      $("div[data-target='" + target + "']").show();
-    });
+$(document).ready(function () {
+  // Ocultar todos los contenidos de las pestañas excepto el primero
+  $(".content > div").not(":first").hide();
+
+  // Manejar el clic en los elementos del menú
+  $("ul.navbar-nav li").click(function () {
+    var target = $(this).data("target");
+    $(".content > div").hide();
+    $("div[data-target='" + target + "']").show();
   });
-  
+});
 
-targets.forEach(targert =>{
+targets.forEach((targert) => {
+  target.addEventListener("click", () => {
+    content.forEach((c) => {
+      c.classList.remove("active");
+    });
 
-    target.addEventListener('click', () =>{
-
-        content.forEach(c => {
-            c.classList.remove('active')
-        })
-
-        const t = document.querySelector(target.dataset.target)
-        t.classList.add('active')
-
-    })
-
-})
+    const t = document.querySelector(target.dataset.target);
+    t.classList.add("active");
+  });
+});
 
 // Función para mostrar u ocultar la columna adicional según la pestaña seleccionada
 function toggleSpecialColumn(target) {
-  var specialColumn = document.querySelector('.special-column');
-  var allowedTargets = ['RegistrarEvento', 'Proveedores', 'Presupuesto', 'Informe'];
+  var specialColumn = document.querySelector(".special-column");
+  var allowedTargets = [
+    "RegistrarEvento",
+    "Proveedores",
+    "Presupuesto",
+    "Informe",
+  ];
 
   if (allowedTargets.includes(target)) {
-      specialColumn.style.display = 'block';
+    specialColumn.style.display = "block";
   } else {
-      specialColumn.style.display = 'none';
+    specialColumn.style.display = "none";
   }
 }
 
 // Evento para detectar el clic en una pestaña de navegación
-document.querySelectorAll('ul.nav.navbar-nav li').forEach(function(item) {
-  item.addEventListener('click', function() {
-      var target = this.getAttribute('data-target');
-      toggleSpecialColumn(target);
+document.querySelectorAll("ul.nav.navbar-nav li").forEach(function (item) {
+  item.addEventListener("click", function () {
+    var target = this.getAttribute("data-target");
+    toggleSpecialColumn(target);
   });
 });
 
@@ -133,7 +129,7 @@ function CalendarControl() {
       "Sep",
       "Oct",
       "Nov",
-      "Dec"
+      "Dec",
     ],
     daysInMonth: function (month, year) {
       return new Date(year, month, 0).getDate();
@@ -225,7 +221,8 @@ function CalendarControl() {
       let count = 1;
       let prevDateCount = 0;
 
-      calendarControl.prevMonthLastDate = calendarControl.getPreviousMonthLastDate();
+      calendarControl.prevMonthLastDate =
+        calendarControl.getPreviousMonthLastDate();
       let prevMonthDatesArray = [];
       let calendarDays = calendarControl.daysInMonth(
         calendar.getMonth() + 1,
@@ -270,11 +267,11 @@ function CalendarControl() {
         calendarControl.navigateToCurrentMonth
       );
       for (var i = 0; i < dateNumber.length; i++) {
-          dateNumber[i].addEventListener(
-            "click",
-            calendarControl.selectDate,
-            false
-          );
+        dateNumber[i].addEventListener(
+          "click",
+          calendarControl.selectDate,
+          false
+        );
       }
     },
     highlightToday: function () {
@@ -292,34 +289,36 @@ function CalendarControl() {
           [calendar.getDate() - 1].classList.add("calendar-today");
       }
     },
-    plotPrevMonthDates: function(dates){
+    plotPrevMonthDates: function (dates) {
       dates.reverse();
-      for(let i=0;i<dates.length;i++) {
-          if(document.querySelectorAll(".prev-dates")) {
-              document.querySelectorAll(".prev-dates")[i].textContent = dates[i];
-          }
+      for (let i = 0; i < dates.length; i++) {
+        if (document.querySelectorAll(".prev-dates")) {
+          document.querySelectorAll(".prev-dates")[i].textContent = dates[i];
+        }
       }
     },
-    plotNextMonthDates: function(){
-     let childElemCount = document.querySelector('.calendar-body').childElementCount;
-     //7 lines
-     if(childElemCount > 42 ) {
-         let diff = 49 - childElemCount;
-         calendarControl.loopThroughNextDays(diff);
-     }
+    plotNextMonthDates: function () {
+      let childElemCount =
+        document.querySelector(".calendar-body").childElementCount;
+      //7 lines
+      if (childElemCount > 42) {
+        let diff = 49 - childElemCount;
+        calendarControl.loopThroughNextDays(diff);
+      }
 
-     //6 lines
-     if(childElemCount > 35 && childElemCount <= 42 ) {
-      let diff = 42 - childElemCount;
-      calendarControl.loopThroughNextDays(42 - childElemCount);
-     }
-
+      //6 lines
+      if (childElemCount > 35 && childElemCount <= 42) {
+        let diff = 42 - childElemCount;
+        calendarControl.loopThroughNextDays(42 - childElemCount);
+      }
     },
-    loopThroughNextDays: function(count) {
-      if(count > 0) {
-          for(let i=1;i<=count;i++) {
-              document.querySelector('.calendar-body').innerHTML += `<div class="next-dates">${i}</div>`;
-          }
+    loopThroughNextDays: function (count) {
+      if (count > 0) {
+        for (let i = 1; i <= count; i++) {
+          document.querySelector(
+            ".calendar-body"
+          ).innerHTML += `<div class="next-dates">${i}</div>`;
+        }
       }
     },
     attachEventsOnNextPrev: function () {
@@ -330,7 +329,7 @@ function CalendarControl() {
       calendarControl.plotSelectors();
       calendarControl.plotDates();
       calendarControl.attachEvents();
-    }
+    },
   };
   calendarControl.init();
 }
@@ -342,40 +341,39 @@ const calendarControl = new CalendarControl();
 //Nueva seccion de Calendario
 
 // generate events
-var eventDates = {}
-let day1 = formatDate(new Date(new Date().setMonth(new Date().getMonth() + 1)))
-eventDates[day1] = [
-  'Event 1, Location',
-  'Event 2, Location 2'
-]
-let day2 = formatDate(new Date(new Date().setDate(new Date().getDate() + 40)))
-eventDates[day2] = [
-  'Event 2, Location 3',
-]
+var eventDates = {};
+let day1 = formatDate(new Date(new Date().setMonth(new Date().getMonth() + 1)));
+eventDates[day1] = ["Event 1, Location", "Event 2, Location 2"];
+let day2 = formatDate(new Date(new Date().setDate(new Date().getDate() + 40)));
+eventDates[day2] = ["Event 2, Location 3"];
 
 // set maxDates
 var maxDate = {
   1: new Date(new Date().setMonth(new Date().getMonth() + 11)),
   2: new Date(new Date().setMonth(new Date().getMonth() + 10)),
-  3: new Date(new Date().setMonth(new Date().getMonth() + 9))
-}
+  3: new Date(new Date().setMonth(new Date().getMonth() + 9)),
+};
 
-var flatpickr = $('#calendar .placeholder').flatpickr({
+var flatpickr = $("#calendar .placeholder").flatpickr({
   inline: true,
-  minDate: 'today',
-  maxDate: maxDate[3]
-,
+  minDate: "today",
+  maxDate: maxDate[3],
   showMonths: 1,
   enable: Object.keys(eventDates),
   disableMobile: "true",
-  onChange: function(date, str, inst) {
-    var contents = '';
-    if(date.length) {
-        for(i=0; i < eventDates[str].length; i++) {
-        contents += '<div class="event"><div class="date">' + flatpickr.formatDate(date[0], 'l J F') + '</div><div class="location">' + eventDates[str][i] + '</div></div>';
+  onChange: function (date, str, inst) {
+    var contents = "";
+    if (date.length) {
+      for (i = 0; i < eventDates[str].length; i++) {
+        contents +=
+          '<div class="event"><div class="date">' +
+          flatpickr.formatDate(date[0], "l J F") +
+          '</div><div class="location">' +
+          eventDates[str][i] +
+          "</div></div>";
       }
     }
-    $('#calendar .calendar-events').html(contents)
+    $("#calendar .calendar-events").html(contents);
   },
   locale: {
     weekdays: {
@@ -388,80 +386,78 @@ var flatpickr = $('#calendar .placeholder').flatpickr({
         "Thursday",
         "Friday",
         "Saturday",
-      ]
-    }
-  }
-})
+      ],
+    },
+  },
+});
 
 eventCaledarResize($(window));
-$(window).on('resize', function() {
-  eventCaledarResize($(this))
-})
+$(window).on("resize", function () {
+  eventCaledarResize($(this));
+});
 
 function eventCaledarResize($el) {
-  var width = $el.width()
-  if(flatpickr.selectedDates.length) {
-    flatpickr.clear()
+  var width = $el.width();
+  if (flatpickr.selectedDates.length) {
+    flatpickr.clear();
   }
-  if(width >= 992 && flatpickr.config.showMonths !== 3) {
-    flatpickr.set('showMonths', 3)
-    flatpickr.set('maxDate', maxDate[3])
+  if (width >= 992 && flatpickr.config.showMonths !== 3) {
+    flatpickr.set("showMonths", 3);
+    flatpickr.set("maxDate", maxDate[3]);
   }
-  if(width < 992 && width >= 768 && flatpickr.config.showMonths !== 2) {
-    flatpickr.set('showMonths', 2)
-    flatpickr.set('maxDate', maxDate[2])
+  if (width < 992 && width >= 768 && flatpickr.config.showMonths !== 2) {
+    flatpickr.set("showMonths", 2);
+    flatpickr.set("maxDate", maxDate[2]);
   }
-  if(width < 768 && flatpickr.config.showMonths !== 1) {
-    flatpickr.set('showMonths', 1)
-    flatpickr.set('maxDate', maxDate[1])
-    $('.flatpickr-calendar').css('width', '')
+  if (width < 768 && flatpickr.config.showMonths !== 1) {
+    flatpickr.set("showMonths", 1);
+    flatpickr.set("maxDate", maxDate[1]);
+    $(".flatpickr-calendar").css("width", "");
   }
 }
 
 function formatDate(date) {
-    let d = date.getDate();
-    let m = date.getMonth() + 1; //Month from 0 to 11
-    let y = date.getFullYear();
-    return '' + y + '-' + (m<=9 ? '0' + m : m) + '-' + (d <= 9 ? '0' + d : d);
+  let d = date.getDate();
+  let m = date.getMonth() + 1; //Month from 0 to 11
+  let y = date.getFullYear();
+  return "" + y + "-" + (m <= 9 ? "0" + m : m) + "-" + (d <= 9 ? "0" + d : d);
 }
-
 
 //Cerrar seccion de Calendario
 
-
 //Seccion de Registrar Evento
-$(document).ready(function() {
+$(document).ready(function () {
   // Otras funciones aquí
 
   // Manejar clic en el botón de agregar invitado
-  $("#btnAgregarInvitado").click(function() {
-      $("#tablaInvitados tbody").append(
-          `<tr>
+  $("#btnAgregarInvitado").click(function () {
+    $("#tablaInvitados tbody").append(
+      `<tr>
               <td><input type="text" class="form-control" placeholder="Nombre" required></td>
               <td><input type="tel" class="form-control" placeholder="Teléfono" required></td>
               <td><input type="email" class="form-control" placeholder="Correo" required></td>
               <td><button type="button" class="btn btn-danger btnEliminarFila">Eliminar</button></td>
           </tr>`
-      );
+    );
   });
 
   // Manejar clic en el botón de eliminar invitado
-  $("#tablaInvitados").on("click", ".btnEliminarFila", function() {
-      $(this).closest("tr").remove();
+  $("#tablaInvitados").on("click", ".btnEliminarFila", function () {
+    $(this).closest("tr").remove();
   });
 
   // Manejar envío del formulario de registro de evento
-  $("#registroEventoForm").submit(function(event) {
-      event.preventDefault();
+  $("#registroEventoForm").submit(function (event) {
+    event.preventDefault();
 
-      // Obtener los valores del formulario
-      var nombreEvento = $("#nombreEvento").val();
-      var fechaEvento = $("#fechaEvento").val();
-      var horaEvento = $("#horaEvento").val();
-      var ubicacionEvento = $("#ubicacionEvento").val();
-      var tipoEvento = $("#tipoEvento").val();
-      var invitacionEvento = $("#invitacionEvento").val();
-      // Aquí puedes continuar con la lógica para procesar los datos del formulario
+    // Obtener los valores del formulario
+    var nombreEvento = $("#nombreEvento").val();
+    var fechaEvento = $("#fechaEvento").val();
+    var horaEvento = $("#horaEvento").val();
+    var ubicacionEvento = $("#ubicacionEvento").val();
+    var tipoEvento = $("#tipoEvento").val();
+    var invitacionEvento = $("#invitacionEvento").val();
+    // Aquí puedes continuar con la lógica para procesar los datos del formulario
   });
 });
 
@@ -471,8 +467,8 @@ $(document).ready(function() {
 // Función para buscar proveedores
 function buscarProveedores() {
   // Obtener valores de los campos de texto
-  var servicio = document.getElementById('servicio').value;
-  var ubicacion = document.getElementById('ubicacion').value;
+  var servicio = document.getElementById("servicio").value;
+  var ubicacion = document.getElementById("ubicacion").value;
 
   // Realizar lógica de búsqueda y mostrar los resultados en la página
 }
@@ -480,25 +476,62 @@ function buscarProveedores() {
 // Función para seleccionar/deseleccionar proveedores
 function toggleSeleccionado(checkbox) {
   if (checkbox.checked) {
-      // Proveedor seleccionado
+    // Proveedor seleccionado
   } else {
-      // Proveedor deseleccionado
+    // Proveedor deseleccionado
   }
 }
 
 // Función para confirmar selección de proveedores
 function confirmarSeleccion() {
-  var checkboxes = document.querySelectorAll('.proveedor input[type="checkbox"]');
+  var checkboxes = document.querySelectorAll(
+    '.proveedor input[type="checkbox"]'
+  );
   var seleccionados = [];
 
-  checkboxes.forEach(function(checkbox) {
-      if (checkbox.checked) {
-          var proveedor = checkbox.closest('.proveedor');
-          var nombreProveedor = proveedor.querySelector('a').textContent;
-          seleccionados.push(nombreProveedor);
-      }
+  checkboxes.forEach(function (checkbox) {
+    if (checkbox.checked) {
+      var proveedor = checkbox.closest(".proveedor");
+      var nombreProveedor = proveedor.querySelector("a").textContent;
+      seleccionados.push(nombreProveedor);
+    }
   });
 
   // Realizar alguna acción con los proveedores seleccionados
 }
 //Fin de la Seccion de Proveedores
+
+
+//Seccion de la creacion de Nuevo Proveedor
+$(document).ready(function() {
+  // Maneja el clic en el botón para mostrar el formulario de registro
+  $("#btnMostrarRegistroProveedor").click(function() {
+    $(".registro-proveedor-form").show();
+  });
+
+  // Maneja el envío del formulario de registro de proveedor
+  $("#registroProveedor").submit(function(event) {
+    event.preventDefault();
+    
+    // Obtiene los datos del formulario
+    var nombre = $("#nombreProveedor").val();
+    var contacto = $("#contactoProveedor").val();
+    var correo = $("#correoProveedor").val();
+    var imagen = $("#imagenProveedor")[0].files[0];
+
+    // Realiza alguna validación de datos aquí si es necesario
+    
+    // Simula el envío de datos al servidor
+    console.log("Nombre: " + nombre);
+    console.log("Contacto: " + contacto);
+    console.log("Correo: " + correo);
+    console.log("Imagen: " + imagen.name); // Muestra el nombre del archivo
+
+    // Cierra el formulario de registro
+    $(".registro-proveedor-form").hide();
+
+    // Limpia el formulario para futuros usos
+    $(this)[0].reset();
+  });
+});
+//Fin de la Seccion de Creacion de nuevo Proveedor
