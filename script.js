@@ -535,3 +535,33 @@ $(document).ready(function() {
   });
 });
 //Fin de la Seccion de Creacion de nuevo Proveedor
+
+//Seccion Lista de Deseos
+// Manejo del formulario para agregar elementos a la lista de deseos
+$("#formAgregarDeseo").submit(function (event) {
+  event.preventDefault();
+  var nuevoElemento = $("#elementoDeseado").val();
+  $("#listaDeseos").append("<li>" + nuevoElemento + "</li>");
+  // Aquí puedes agregar el código para guardar la lista en el almacenamiento local o en una base de datos
+});
+
+// Manejo de la selección de un planificador
+$("#listaPlanificadores").on("click", ".btn-seleccionar", function () {
+  // Aquí puedes agregar el código para seleccionar el planificador
+});
+
+// Manejo de la presentación del formulario de opinión
+$("#listaPlanificadores").on("click", ".btn-opinion", function () {
+  // Aquí puedes agregar el código para mostrar el formulario de opinión
+});
+
+// Manejo del formulario de opinión
+$("#formularioOpinion").submit(function (event) {
+  event.preventDefault();
+  var calificacion = $("input[name=calificacion]:checked").val();
+  var opinion = $("#opinion").val();
+  // Aquí puedes agregar el código para enviar la calificación y la opinión del cliente
+});
+
+//Fin de la seccion de Lista de Deseos
+
