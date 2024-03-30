@@ -55,7 +55,9 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li data-target="EventoSimple"><a href="#">Evento Simple</a></li>
-            <li data-target="RegistrarEvento"><a href="#">RegistrarEvento</a></li>
+            <li data-target="RegistrarEvento">
+              <a href="#">RegistrarEvento</a>
+            </li>
             <li data-target="ListaDeseos"><a href="#">Lista de Deseos</a></li>
             <li data-target="Proveedores"><a href="#">Proveedores</a></li>
             <li data-target="Presupuesto"><a href="#">Presupuesto</a></li>
@@ -197,7 +199,55 @@
 
         <!--Seccion de Lista de Deseos-->
         <div data-target="ListaDeseos" class="col-sm-12 text-left">
-          <h1>Lista de deseos</h1>
+          <h1>Lista de Deseos</h1>
+
+          <!-- Contexto y explicación de la funcionalidad -->
+          <p>
+            La lista de deseos te permite organizar y agregar todo lo que te
+            gustaría tener o realizar en tu evento. Puedes escribir pequeños
+            párrafos describiendo tus ideas, preferencias y cualquier detalle
+            que desees tener presente. selecciona un Planificador que desea
+            realizar su evento a su vez que un asesor vera su lista y este se
+            asegurara de fijar los proveedores y elementos que se adapten a su
+            lista de deseos y conforme a su presupuesto. IMPORTANTE MENCIONAR:
+            El presupuesto, La cantidad de Invitados(Si son adultos o Jovenes),
+            Fecha y Hora del Evento. NO OLVIDAR NINGUN detalle Tambien de que
+            debera cumplir con un anticipo y/o Cotizacion para poder realizar su
+            evento si no hay respuesta despues de un tiempo limite se cancelara
+            automaticamente el evento.
+          </p>
+
+          <!-- Formulario para agregar elementos a la lista de deseos -->
+          <form id="formAgregarDeseo">
+            <div class="form-group">
+              <label for="elementoDeseado">Agregar a la lista de deseos:</label>
+              <textarea
+                class="form-control"
+                id="elementoDeseado"
+                rows="10"
+                placeholder="Escribe aquí lo que deseas agregar"
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+          </form>
+          <!-- Lista de planificadores con opiniones y puntajes -->
+          <h2>Planificadores</h2>
+          <ul id="listaPlanificadores">
+            <li>
+              <div>
+                <h3>Eduardo Gomez</h3>
+                <p>Opinión: Rapido y Atento a la hora de operar.</p>
+                <p>Puntuación: ★★★★☆</p>
+                <button type="button" class="btn btn-primary btn-seleccionar">
+                  Seleccionar
+                </button>
+                <button type="button" class="btn btn-info btn-opinion">
+                  Opinar
+                </button>
+              </div>
+            </li>
+            <!-- Repite este bloque de planificador para cada planificador -->
+          </ul>
         </div>
         <!--Fin de la Seccion de Lista de Deseos-->
 
