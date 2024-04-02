@@ -81,6 +81,198 @@
         <!--Seccion Evento Simple-->
         <div data-target="EventoSimple" class="col-sm-12 text-left">
           <h1>Evento Simple</h1>
+          <!-- Contenedor de pasos -->
+          <div id="pasos" class="pasos">
+            <!-- Paso 1: Tipo de evento y fecha -->
+            <div id="paso1" class="paso" style="display: block">
+              <h3>Paso 1: Tipo de evento y fecha</h3>
+              <div class="form-group">
+                <label for="tipoEvento">Tipo de Evento:</label>
+                <select class="form-control" id="tipoEvento">
+                  <option value="boda">Boda</option>
+                  <option value="cumpleanos">Cumpleaños</option>
+                  <option value="bautizo">Bautizo</option>
+                  <!-- Agrega más opciones según sea necesario -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="fechaEvento">Fecha:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="fechaEvento"
+                  required
+                />
+              </div>
+            </div>
+
+            <!-- Paso 2: Ubicación -->
+            <div id="paso2" class="paso" style="display: none">
+              <h3>Paso 2: Ubicación</h3>
+              <div class="form-group">
+                <label for="ubicacion">Ubicación:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ubicacion"
+                  placeholder="Ingrese la ubicación del evento"
+                  required
+                />
+              </div>
+              <!-- Agrega más campos según sea necesario para este paso -->
+            </div>
+
+            <!-- Paso 3: Comida -->
+            <div id="paso3" class="paso" style="display: none">
+              <h3>Paso 3: Comida</h3>
+              <div class="form-group">
+                <label for="tipoComida">Tipo de comida:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="tipoComida"
+                  placeholder="Ingrese el tipo de comida"
+                />
+              </div>
+              <div class="form-group">
+                <label for="platosPrincipales">Platos principales:</label>
+                <textarea
+                  class="form-control"
+                  id="platosPrincipales"
+                  rows="3"
+                  placeholder="Ingrese los platos principales"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="aperitivos">Aperitivos:</label>
+                <textarea
+                  class="form-control"
+                  id="aperitivos"
+                  rows="3"
+                  placeholder="Ingrese los aperitivos"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="postres">Postres:</label>
+                <textarea
+                  class="form-control"
+                  id="postres"
+                  rows="3"
+                  placeholder="Ingrese los postres"
+                ></textarea>
+              </div>
+              <!-- Agrega más campos según sea necesario para este paso -->
+            </div>
+
+            <!-- Paso 4: Invitados -->
+            <div id="paso4" class="paso" style="display: none">
+              <h3>Paso 4: Invitados</h3>
+              <div class="form-group">
+                <label for="cantidadAdultos">Cantidad de adultos:</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="cantidadAdultos"
+                  placeholder="Ingrese la cantidad de adultos"
+                />
+              </div>
+              <div class="form-group">
+                <label for="cantidadNinos">Cantidad de niños:</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="cantidadNinos"
+                  placeholder="Ingrese la cantidad de niños"
+                />
+              </div>
+              <div class="form-group">
+                <label for="cantidadInfantes">Cantidad de infantes:</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="cantidadInfantes"
+                  placeholder="Ingrese la cantidad de infantes"
+                />
+              </div>
+              <!-- Agrega más campos según sea necesario para este paso -->
+            </div>
+
+            <!-- Paso 5: Presupuesto -->
+            <div id="paso5" class="paso" style="display: none">
+              <h3>Paso 5: Presupuesto</h3>
+              <div class="form-group">
+                <label for="presupuestoTotal">Presupuesto total:</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="presupuestoTotal"
+                  placeholder="Ingrese el presupuesto total"
+                />
+              </div>
+              <div class="form-group">
+                <label for="presupuestoComida">Presupuesto para comida:</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="presupuestoComida"
+                  placeholder="Ingrese el presupuesto para comida"
+                />
+              </div>
+              <div class="form-group">
+                <label for="presupuestoDecoracion"
+                  >Presupuesto para decoración:</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="presupuestoDecoracion"
+                  placeholder="Ingrese el presupuesto para decoración"
+                />
+              </div>
+              <!-- Agrega más campos según sea necesario para este paso -->
+            </div>
+
+            <!-- Paso 6: Resumen y Pago -->
+            <div id="paso6" class="paso" style="display: none">
+              <h3>Paso 6: Resumen y Pago</h3>
+              <div class="form-group">
+                <label for="resumenEvento">Resumen del evento:</label>
+                <textarea
+                  class="form-control"
+                  id="resumenEvento"
+                  rows="5"
+                  placeholder="Ingrese un resumen del evento"
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="formaPago">Forma de pago:</label>
+                <select class="form-control" id="formaPago">
+                  <option value="tarjeta">Tarjeta de crédito/débito</option>
+                  <option value="deposito">Depósito bancario</option>
+                  <!-- Agrega más opciones según sea necesario -->
+                </select>
+              </div>
+              <!-- Agrega más campos según sea necesario para este paso -->
+            </div>
+
+            <!-- Botones para navegar entre pasos -->
+            <div class="text-center">
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="anteriorPaso()"
+              >
+                Anterior
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onclick="siguientePaso()"
+              >
+                Siguiente
+              </button>
+            </div>
+          </div>
         </div>
         <!--Fin de la Seccion Evento Simple-->
 
