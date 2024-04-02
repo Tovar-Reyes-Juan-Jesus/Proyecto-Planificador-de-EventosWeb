@@ -501,18 +501,17 @@ function confirmarSeleccion() {
 }
 //Fin de la Seccion de Proveedores
 
-
 //Seccion de la creacion de Nuevo Proveedor
-$(document).ready(function() {
+$(document).ready(function () {
   // Maneja el clic en el botón para mostrar el formulario de registro
-  $("#btnMostrarRegistroProveedor").click(function() {
+  $("#btnMostrarRegistroProveedor").click(function () {
     $(".registro-proveedor-form").show();
   });
 
   // Maneja el envío del formulario de registro de proveedor
-  $("#registroProveedor").submit(function(event) {
+  $("#registroProveedor").submit(function (event) {
     event.preventDefault();
-    
+
     // Obtiene los datos del formulario
     var nombre = $("#nombreProveedor").val();
     var contacto = $("#contactoProveedor").val();
@@ -520,7 +519,7 @@ $(document).ready(function() {
     var imagen = $("#imagenProveedor")[0].files[0];
 
     // Realiza alguna validación de datos aquí si es necesario
-    
+
     // Simula el envío de datos al servidor
     console.log("Nombre: " + nombre);
     console.log("Contacto: " + contacto);
@@ -565,3 +564,35 @@ $("#formularioOpinion").submit(function (event) {
 
 //Fin de la seccion de Lista de Deseos
 
+//Seccion Evento Simple
+
+// Función para mostrar el paso especificado
+function mostrarPaso(numeroPaso) {
+  // Ocultar todos los pasos
+  $(".paso").hide();
+  // Mostrar el paso especificado
+  $("#paso" + numeroPaso).show();
+}
+
+// Función para avanzar al siguiente paso
+function siguientePaso() {
+  // Obtener el número del paso actual
+  var pasoActual = $(".paso:visible").index() + 1;
+  // Mostrar el siguiente paso
+  mostrarPaso(pasoActual + 1);
+}
+
+// Función para retroceder al paso anterior
+function anteriorPaso() {
+  // Obtener el número del paso actual
+  var pasoActual = $(".paso:visible").index() + 1;
+  // Mostrar el paso anterior
+  mostrarPaso(pasoActual - 1);
+}
+
+// Mostrar el primer paso al cargar la página
+$(document).ready(function () {
+  mostrarPaso(1);
+});
+
+//Fin de la Seccion de Evento Simple
