@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="estilos1.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.js"
       defer
@@ -440,6 +442,12 @@
             </li>
             <!-- Repite este bloque de planificador para cada planificador -->
           </ul>
+          <p>
+            -------------------------------------------------------------------------------------------------------------------------
+            -------------------------------------------------------------------------------------------------------------------------
+            -------------------------------------------------------------------------------------------------------------------------
+            -------------------------------------------------------------------------------------------------------------------------
+          </p>
         </div>
         <!--Fin de la Seccion de Lista de Deseos-->
 
@@ -566,12 +574,44 @@
           <button type="button" class="btn btn-danger">
             Cancelar Selección
           </button>
+          <p>
+            -------------------------------------------------------------------------------------------------------------------------
+            -------------------------------------------------------------------------------------------------------------------------
+            -------------------------------------------------------------------------------------------------------------------------
+            -------------------------------------------------------------------------------------------------------------------------
+          </p>
         </div>
         <!--Fin de la seccion Proveedores-->
 
         <!--Seccion Presupuesto-->
         <div data-target="Presupuesto" class="col-sm-12 text-left">
-          <h3>presupuesto</h3>
+          <h3>Presupuesto</h3>
+          <label for="cantidad">Cantidad:</label>
+          <input type="number" id="cantidad" />
+          <button onclick="agregarGasto()">Agregar Gasto</button>
+          <br />
+          <label for="metodo">Método de Pago:</label>
+          <select id="metodo">
+            <option value="Depósito de Banco">Depósito de Banco</option>
+            <option value="PayPal">PayPal</option>
+            <option value="MasterCard">MasterCard</option>
+            <option value="Visa">Visa</option>
+          </select>
+
+          <div id="historial">
+            <h3>Historial de Gastos</h3>
+            <!-- Aquí se mostrarán los gastos registrados -->
+          </div>
+
+          <div id="total">
+            <h3>Total del Presupuesto</h3>
+            <p id="totalAmount"></p>
+          </div>
+
+          <div id="grafica">
+            <h3>Gráfica de Presupuesto vs. Gasto</h3>
+            <canvas id="graficaPastel"></canvas>
+          </div>
         </div>
         <!--Fin de la Seccion Presupuesto-->
 
@@ -583,9 +623,21 @@
 
         <!--Seccion Informe-->
         <div data-target="Informe" class="col-sm-12 text-left">
-          <h3>informe</h3>
+          <h3>Informe</h3>
+          <button onclick="generarInformePDF()">Generar Informe PDF</button>
+          <div id="resumenEvento">
+            <!-- Aquí se mostrará el resumen del evento -->
+          </div>
+
+          <!-- Sección para la vista previa del informe -->
+          <div id="vistaPreviaInforme" style="display: none">
+            <h2>Vista Previa del Informe</h2>
+            <div id="contenidoInforme">
+              <!-- Aquí se mostrará el contenido del informe -->
+            </div>
+          </div>
         </div>
-        <!--Fin de la Seccion Informe-->
+        <!--Fin de la Sección Informe-->
 
         <!--Seccion LOGIN-->
         <div data-target="Login">
