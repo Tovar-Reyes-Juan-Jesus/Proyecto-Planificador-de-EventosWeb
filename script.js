@@ -596,3 +596,175 @@ $(document).ready(function () {
 });
 
 //Fin de la Seccion de Evento Simple
+
+
+
+//Seccion de Presupuesto
+
+// Obtener el historial de gastos desde el almacenamiento local, si existe
+let gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+
+// Función para agregar un nuevo gasto al presupuesto
+function agregarGasto() {
+  let cantidad = parseFloat(document.getElementById('cantidad').value);
+  let metodo = document.getElementById('metodo').value;
+
+  // Validar que la cantidad sea un número válido
+  if (isNaN(cantidad)) {
+    alert('Por favor, ingresa una cantidad válida.');
+    return;
+  }
+
+  // Agregar el nuevo gasto al array
+  gastos.push({ cantidad: cantidad, metodo: metodo });
+
+  // Guardar los gastos actualizados en el almacenamiento local
+  localStorage.setItem('gastos', JSON.stringify(gastos));
+
+  // Actualizar el historial de gastos
+  actualizarHistorial();
+
+  // Calcular el total del presupuesto
+  calcularTotal();
+}
+
+// Función para eliminar un gasto del presupuesto
+function eliminarGasto(index) {
+  gastos.splice(index, 1); // Eliminar el gasto del array
+  localStorage.setItem('gastos', JSON.stringify(gastos)); // Actualizar el almacenamiento local
+  actualizarHistorial(); // Actualizar el historial de gastos
+  calcularTotal(); // Recalcular el total del presupuesto
+}
+
+// Función para calcular el total del presupuesto
+function calcularTotal() {
+  let total = gastos.reduce((acc, gasto) => acc + gasto.cantidad, 0);
+  document.getElementById('totalAmount').innerText = "Total: $" + total.toFixed(2);
+}
+
+// Función para actualizar el historial de gastos
+function actualizarHistorial() {
+  let historialDiv = document.getElementById('historial');
+  historialDiv.innerHTML = '';
+
+  gastos.forEach((gasto, index) => {
+    let gastoItem = document.createElement('div');
+    gastoItem.innerHTML = `
+      <span>Cantidad: $${gasto.cantidad.toFixed(2)} - Método de Pago: ${gasto.metodo}</span>
+      <button onclick="eliminarGasto(${index})">Eliminar</button>
+    `;
+    historialDiv.appendChild(gastoItem);
+  });
+}
+
+// Llamar a las funciones para inicializar la página
+actualizarHistorial();
+calcularTotal();
+
+// Definir el contexto del lienzo de la gráfica de pastel
+let ctx = document.getElementById('graficaPastel').getContext('2d');
+
+// Función para calcular el gasto total
+function calcularGastoTotal() {
+  let total = gastos.reduce((acc, gasto) => acc + gasto.cantidad, 0);
+  return total;
+}
+
+// Función para actualizar la gráfica de pastel
+function actualizarGrafica() {
+  let gastoTotal = calcularGastoTotal();
+  let presupuestoRestante = presupuestoTotal - gastoTotal;
+
+  let data = {
+    labels: ['Presupuesto Restante', 'Gasto Total'],
+    datasets: [{
+      data: [presupuestoRestante, gastoTotal],
+      backgroundColor: ['#36A2EB', '#FF6384'],
+      hoverBackgroundColor: ['#36A2EB', '#FF6384']
+    }]
+  };
+
+  let options = {
+    responsive: true,
+    maintainAspectRatio: false
+  };
+
+  if (window.grafica) {
+    window.grafica.destroy();
+  }
+
+  window.grafica = new Chart(ctx, {
+    type: 'pie',
+    data: data,
+    options: options
+  });
+}
+
+// Llamar a la función para actualizar la gráfica inicialmente
+actualizarGrafica();
+
+// Actualizar la gráfica cada vez que se agrega un nuevo gasto
+function agregarGasto() {
+  // Tu código existente para agregar un nuevo gasto
+
+  // Después de agregar el gasto, actualiza la gráfica
+  actualizarGrafica();
+}
+
+
+//Fin de la Seccion de Presupuesto
+
+//Seccion de Horario
+
+
+
+//Fin de la Seccion de Horario
+
+
+//Seccion de Informe
+
+function generarInformePDF() {
+  // Crear un nuevo documento PDF
+  const doc = new jsPDF();
+  
+  // Agregar contenido al PDF
+  doc.text("Resumen del Evento", 10, 10);
+  doc.text("Elementos Usados en el Evento:", 10, 20);
+  // Aquí puedes agregar más detalles sobre los elementos utilizados en el evento
+  
+  doc.text("Registro de Invitados:", 10, 40);
+  // Aquí puedes agregar detalles sobre los invitados y si aceptaron o rechazaron la invitación
+  
+  doc.text("Gasto Total del Evento:", 10, 60);
+  // Aquí puedes agregar el gasto total del evento
+  
+  // Guardar el PDF
+  doc.save("InformeEvento.pdf");
+}
+
+ // Función para mostrar la vista previa del informe
+ function mostrarVistaPreviaInforme(evento) {
+  const vistaPreviaInforme = document.getElementById('vistaPreviaInforme');
+  const contenidoInforme = document.getElementById('contenidoInforme');
+
+  // Verificar si hay un evento disponible
+  if (evento) {
+    // Mostrar la vista previa del informe
+    vistaPreviaInforme.style.display = 'block';
+    // Actualizar el contenido del informe
+    contenidoInforme.innerHTML = `
+      <h3>Resumen del Evento</h3>
+      <!-- Aquí puedes agregar detalles sobre el evento, como los elementos utilizados, invitados, gasto total, etc. -->
+    `;
+  } else {
+    // No hay evento disponible, mostrar mensaje de "ningún evento disponible"
+    vistaPreviaInforme.style.display = 'block';
+    contenidoInforme.innerHTML = '<p>Ningún evento disponible</p>';
+  }
+}
+
+// Llamar a la función para mostrar la vista previa del informe
+mostrarVistaPreviaInforme(null); // Pasar null si no hay ningún evento disponible
+
+
+//Fin de la Seccion de Informe
