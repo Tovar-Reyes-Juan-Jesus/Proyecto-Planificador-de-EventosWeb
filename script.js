@@ -1,32 +1,8 @@
-//REGISTRO
+//REGISTRO e Inicio de sesion
 
-$(document).ready(function () {
-  // Otro código aquí
-
-  // Manejar clic en el botón de registro
-  $("#btn-register").click(function () {
-    // Ocultar el contenido de inicio de sesión
-    $("div[data-target='Login']").hide();
-    // Mostrar el formulario de registro
-    $("#register-form").show();
-  });
-});
-
-//INICIAR SESION
-
-$(document).ready(function () {
-  // Ocultar todos los contenidos de las pestañas excepto el primero
-  $(".content > div").not(":first").hide();
-
-  // Manejar el clic en los elementos del menú
-  $("ul.navbar-nav li").click(function () {
-    var target = $(this).data("target");
-    $(".content > div").hide();
-    $("div[data-target='" + target + "']").show();
-  });
-
+$(document).ready(function() {
   // Manejar el envío del formulario de inicio de sesión
-  $("form").submit(function (event) {
+  $("form#login-form").submit(function(event) {
     // Evitar que el formulario se envíe de manera predeterminada
     event.preventDefault();
 
@@ -34,10 +10,76 @@ $(document).ready(function () {
     var username = $("#username").val();
     var password = $("#password").val();
 
-    // Aquí puedes agregar la lógica para validar el nombre de usuario y la contraseña
-    // Por ejemplo, podrías enviar una solicitud AJAX al servidor para verificar las credenciales
+    // Crear un objeto con los datos del formulario
+    var formData = {
+      username: username,
+      password: password
+    };
+
+    // Enviar los datos del formulario al servidor mediante AJAX
+    $.ajax({
+      type: "POST",
+      url: "login.php", // Ruta al archivo PHP que maneja el inicio de sesión
+      data: formData,
+      success: function(response) {
+        // Manejar la respuesta del servidor aquí
+        console.log(response); // Solo para propósitos de demostración
+      },
+      error: function(xhr, status, error) {
+        // Manejar errores de AJAX aquí
+        console.error(error); // Imprimir el error en la consola
+      }
+    });
+  });
+
+  // Manejar el envío del formulario de registro
+  $("form#registro-form").submit(function(event) {
+    // Evitar que el formulario se envíe de manera predeterminada
+    event.preventDefault();
+
+    // Obtener los valores de los campos de entrada
+    var nombre = $("#nombre").val();
+    var apellidoPaterno = $("#apellido-paterno").val();
+    var apellidoMaterno = $("#apellido-materno").val();
+    var correo = $("#correo").val();
+    var telefono = $("#telefono").val();
+    var password = $("#password").val(); // Aquí también debemos cambiar el ID
+
+    // Crear un objeto con los datos del formulario
+    var formData = {
+      nombre: nombre,
+      apellidoPaterno: apellidoPaterno,
+      apellidoMaterno: apellidoMaterno,
+      correo: correo,
+      telefono: telefono,
+      password: password
+    };
+
+    // Enviar los datos del formulario al servidor mediante AJAX
+    $.ajax({
+      type: "POST",
+      url: "registro.php", // Ruta al archivo PHP que maneja el registro
+      data: formData,
+      success: function(response) {
+        // Manejar la respuesta del servidor aquí
+        console.log(response); // Solo para propósitos de demostración
+      },
+      error: function(xhr, status, error) {
+        // Manejar errores de AJAX aquí
+        console.error(error); // Imprimir el error en la consola
+      }
+    });
+  });
+
+  // Manejar clic en el botón de registro
+  $("#btn-register").click(function() {
+    // Ocultar el contenido de inicio de sesión
+    $("div[data-target='Login']").hide();
+    // Mostrar el formulario de registro
+    $("#register-form").show();
   });
 });
+
 
 //CALENDARIO
 
@@ -597,21 +639,19 @@ $(document).ready(function () {
 
 //Fin de la Seccion de Evento Simple
 
-
-
 //Seccion de Presupuesto
 
 // Obtener el historial de gastos desde el almacenamiento local, si existe
-let gastos = JSON.parse(localStorage.getItem('gastos')) || [];
+let gastos = JSON.parse(localStorage.getItem("gastos")) || [];
 
 // Función para agregar un nuevo gasto al presupuesto
 function agregarGasto() {
-  let cantidad = parseFloat(document.getElementById('cantidad').value);
-  let metodo = document.getElementById('metodo').value;
+  let cantidad = parseFloat(document.getElementById("cantidad").value);
+  let metodo = document.getElementById("metodo").value;
 
   // Validar que la cantidad sea un número válido
   if (isNaN(cantidad)) {
-    alert('Por favor, ingresa una cantidad válida.');
+    alert("Por favor, ingresa una cantidad válida.");
     return;
   }
 
@@ -619,7 +659,7 @@ function agregarGasto() {
   gastos.push({ cantidad: cantidad, metodo: metodo });
 
   // Guardar los gastos actualizados en el almacenamiento local
-  localStorage.setItem('gastos', JSON.stringify(gastos));
+  localStorage.setItem("gastos", JSON.stringify(gastos));
 
   // Actualizar el historial de gastos
   actualizarHistorial();
@@ -631,7 +671,7 @@ function agregarGasto() {
 // Función para eliminar un gasto del presupuesto
 function eliminarGasto(index) {
   gastos.splice(index, 1); // Eliminar el gasto del array
-  localStorage.setItem('gastos', JSON.stringify(gastos)); // Actualizar el almacenamiento local
+  localStorage.setItem("gastos", JSON.stringify(gastos)); // Actualizar el almacenamiento local
   actualizarHistorial(); // Actualizar el historial de gastos
   calcularTotal(); // Recalcular el total del presupuesto
 }
@@ -639,18 +679,21 @@ function eliminarGasto(index) {
 // Función para calcular el total del presupuesto
 function calcularTotal() {
   let total = gastos.reduce((acc, gasto) => acc + gasto.cantidad, 0);
-  document.getElementById('totalAmount').innerText = "Total: $" + total.toFixed(2);
+  document.getElementById("totalAmount").innerText =
+    "Total: $" + total.toFixed(2);
 }
 
 // Función para actualizar el historial de gastos
 function actualizarHistorial() {
-  let historialDiv = document.getElementById('historial');
-  historialDiv.innerHTML = '';
+  let historialDiv = document.getElementById("historial");
+  historialDiv.innerHTML = "";
 
   gastos.forEach((gasto, index) => {
-    let gastoItem = document.createElement('div');
+    let gastoItem = document.createElement("div");
     gastoItem.innerHTML = `
-      <span>Cantidad: $${gasto.cantidad.toFixed(2)} - Método de Pago: ${gasto.metodo}</span>
+      <span>Cantidad: $${gasto.cantidad.toFixed(2)} - Método de Pago: ${
+      gasto.metodo
+    }</span>
       <button onclick="eliminarGasto(${index})">Eliminar</button>
     `;
     historialDiv.appendChild(gastoItem);
@@ -662,7 +705,7 @@ actualizarHistorial();
 calcularTotal();
 
 // Definir el contexto del lienzo de la gráfica de pastel
-let ctx = document.getElementById('graficaPastel').getContext('2d');
+let ctx = document.getElementById("graficaPastel").getContext("2d");
 
 // Función para calcular el gasto total
 function calcularGastoTotal() {
@@ -676,17 +719,19 @@ function actualizarGrafica() {
   let presupuestoRestante = presupuestoTotal - gastoTotal;
 
   let data = {
-    labels: ['Presupuesto Restante', 'Gasto Total'],
-    datasets: [{
-      data: [presupuestoRestante, gastoTotal],
-      backgroundColor: ['#36A2EB', '#FF6384'],
-      hoverBackgroundColor: ['#36A2EB', '#FF6384']
-    }]
+    labels: ["Presupuesto Restante", "Gasto Total"],
+    datasets: [
+      {
+        data: [presupuestoRestante, gastoTotal],
+        backgroundColor: ["#36A2EB", "#FF6384"],
+        hoverBackgroundColor: ["#36A2EB", "#FF6384"],
+      },
+    ],
   };
 
   let options = {
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
   };
 
   if (window.grafica) {
@@ -694,9 +739,9 @@ function actualizarGrafica() {
   }
 
   window.grafica = new Chart(ctx, {
-    type: 'pie',
+    type: "pie",
     data: data,
-    options: options
+    options: options,
   });
 }
 
@@ -711,46 +756,42 @@ function agregarGasto() {
   actualizarGrafica();
 }
 
-
 //Fin de la Seccion de Presupuesto
 
 //Seccion de Horario
 
-
-
 //Fin de la Seccion de Horario
-
 
 //Seccion de Informe
 
 function generarInformePDF() {
   // Crear un nuevo documento PDF
   const doc = new jsPDF();
-  
+
   // Agregar contenido al PDF
   doc.text("Resumen del Evento", 10, 10);
   doc.text("Elementos Usados en el Evento:", 10, 20);
   // Aquí puedes agregar más detalles sobre los elementos utilizados en el evento
-  
+
   doc.text("Registro de Invitados:", 10, 40);
   // Aquí puedes agregar detalles sobre los invitados y si aceptaron o rechazaron la invitación
-  
+
   doc.text("Gasto Total del Evento:", 10, 60);
   // Aquí puedes agregar el gasto total del evento
-  
+
   // Guardar el PDF
   doc.save("InformeEvento.pdf");
 }
 
- // Función para mostrar la vista previa del informe
- function mostrarVistaPreviaInforme(evento) {
-  const vistaPreviaInforme = document.getElementById('vistaPreviaInforme');
-  const contenidoInforme = document.getElementById('contenidoInforme');
+// Función para mostrar la vista previa del informe
+function mostrarVistaPreviaInforme(evento) {
+  const vistaPreviaInforme = document.getElementById("vistaPreviaInforme");
+  const contenidoInforme = document.getElementById("contenidoInforme");
 
   // Verificar si hay un evento disponible
   if (evento) {
     // Mostrar la vista previa del informe
-    vistaPreviaInforme.style.display = 'block';
+    vistaPreviaInforme.style.display = "block";
     // Actualizar el contenido del informe
     contenidoInforme.innerHTML = `
       <h3>Resumen del Evento</h3>
@@ -758,13 +799,223 @@ function generarInformePDF() {
     `;
   } else {
     // No hay evento disponible, mostrar mensaje de "ningún evento disponible"
-    vistaPreviaInforme.style.display = 'block';
-    contenidoInforme.innerHTML = '<p>Ningún evento disponible</p>';
+    vistaPreviaInforme.style.display = "block";
+    contenidoInforme.innerHTML = "<p>Ningún evento disponible</p>";
   }
 }
 
 // Llamar a la función para mostrar la vista previa del informe
 mostrarVistaPreviaInforme(null); // Pasar null si no hay ningún evento disponible
 
-
 //Fin de la Seccion de Informe
+
+//Seccion de Horario de Evento
+
+// Función para guardar la información ingresada por el usuario
+document.querySelectorAll(".guardar").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const dotInfo = btn.parentElement;
+    const description = dotInfo.querySelector("input").value;
+    const hour = dotInfo.querySelector(".hour").textContent;
+    const descriptionWrapper = document.querySelector(
+      `#timeline-descriptions-wrapper p[data-description="${hour}"]`
+    );
+    if (descriptionWrapper) {
+      descriptionWrapper.textContent = description;
+    }
+  });
+});
+
+//Fin de la seccion de Horario de Evento
+
+
+//Seccion de Google Api
+
+/* exported gapiLoaded */
+  /* exported gisLoaded */
+  /* exported handleAuthClick */
+  /* exported handleSignoutClick */
+
+  // TODO(developer): Set to client ID and API key from the Developer Console
+  const CLIENT_ID = '842496609729-71ul9fam01mm1eev6vik0dhi7esg1qs2.apps.googleusercontent.com';
+  const API_KEY = 'AIzaSyABk9nApE4CTl67pqXtbjmtp1Rsm0f79Is';
+
+  // Discovery doc URL for APIs used by the quickstart
+  const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+
+  // Authorization scopes required by the API; multiple scopes can be
+  // included, separated by spaces.
+  const SCOPES = 'https://www.googleapis.com/auth/calendar';
+
+  let tokenClient;
+  let gapiInited = false;
+  let gisInited = false;
+
+  document.getElementById('authorize_button').style.visibility = 'hidden';
+  document.getElementById('signout_button').style.visibility = 'hidden';
+
+  /**
+   * Callback after api.js is loaded.
+   */
+  function gapiLoaded() {
+    gapi.load('client', initializeGapiClient);
+  }
+
+  /**
+   * Callback after the API client is loaded. Loads the
+   * discovery doc to initialize the API.
+   */
+  async function initializeGapiClient() {
+    await gapi.client.init({
+      apiKey: API_KEY,
+      discoveryDocs: [DISCOVERY_DOC],
+    });
+    gapiInited = true;
+    maybeEnableButtons();
+  }
+
+  /**
+   * Callback after Google Identity Services are loaded.
+   */
+  function gisLoaded() {
+    tokenClient = google.accounts.oauth2.initTokenClient({
+      client_id: CLIENT_ID,
+      scope: SCOPES,
+      callback: '', // defined later
+    });
+    gisInited = true;
+    maybeEnableButtons();
+  }
+
+  /**
+   * Enables user interaction after all libraries are loaded.
+   */
+  function maybeEnableButtons() {
+    if (gapiInited && gisInited) {
+      document.getElementById('authorize_button').style.visibility = 'visible';
+    }
+  }
+
+  /**
+   *  Sign in the user upon button click.
+   */
+  function handleAuthClick() {
+    tokenClient.callback = async (resp) => {
+      if (resp.error !== undefined) {
+        throw (resp);
+      }
+      document.getElementById('signout_button').style.visibility = 'visible';
+      document.getElementById('authorize_button').innerText = 'Refresh';
+      await listUpcomingEvents();
+    };
+
+    if (gapi.client.getToken() === null) {
+      // Prompt the user to select a Google Account and ask for consent to share their data
+      // when establishing a new session.
+      tokenClient.requestAccessToken({prompt: 'consent'});
+    } else {
+      // Skip display of account chooser and consent dialog for an existing session.
+      tokenClient.requestAccessToken({prompt: ''});
+    }
+  }
+
+  /**
+   *  Sign out the user upon button click.
+   */
+  function handleSignoutClick() {
+    const token = gapi.client.getToken();
+    if (token !== null) {
+      google.accounts.oauth2.revoke(token.access_token);
+      gapi.client.setToken('');
+      document.getElementById('content').innerText = '';
+      document.getElementById('authorize_button').innerText = 'Authorize';
+      document.getElementById('signout_button').style.visibility = 'hidden';
+    }
+  }
+
+  /**
+   * Print the summary and start datetime/date of the next ten events in
+   * the authorized user's calendar. If no events are found an
+   * appropriate message is printed.
+   */
+  async function listUpcomingEvents() {
+    let response;
+    try {
+      const request = {
+        'calendarId': 'primary',
+        'timeMin': (new Date()).toISOString(),
+        'showDeleted': false,
+        'singleEvents': true,
+        'maxResults': 10,
+        'orderBy': 'startTime',
+      };
+      response = await gapi.client.calendar.events.list(request);
+    } catch (err) {
+      document.getElementById('content').innerText = err.message;
+      return;
+    }
+
+    const events = response.result.items;
+    if (!events || events.length == 0) {
+      document.getElementById('content').innerText = 'No events found.';
+      return;
+    }
+    // Flatten to string to display
+    const output = events.reduce(
+        (str, event) => `${str}${event.summary} (${event.start.dateTime || event.start.date})\n`,
+        'Events:\n');
+    document.getElementById('content').innerText = output;
+  }
+
+//Fin de la seccion de Google Api
+
+// Seccion de ADDEVENTO 
+
+const addEvent = () => {
+  const title = document.getElementById("title").value;
+  const desc = document.getElementById("desc").value;
+  const date = document.getElementById("date").value;
+  const start = document.getElementById("st").value;
+  const end = document.getElementById("et").value;
+
+  const startTime = new Date(date + "," + start).toISOString();
+  const endTime = new Date(date + "," + end).toISOString();
+
+  var event = {
+    summary: title,
+    location: "Google Meet",
+    description: desc,
+    start: {
+      dateTime: startTime,
+      timeZone: "America/Los_Angeles"
+    },
+    end: {
+      dateTime: endTime,
+      timeZone: "America/Los_Angeles"
+    },
+    recurrence: ["RRULE:FREQ=DAILY;COUNT=2"],
+    attendees: [
+      { email: "abc@google.com" },
+      { email: "xyz@google.com" }
+    ],
+    reminders: {
+      useDefault: false,
+      overrides: [
+        { method: "email", minutes: 24 * 60 },
+        { method: "popup", minutes: 10 }
+      ]
+    }
+  };
+
+  console.log(event)
+  var request = gapi.client.calendar.events.insert({
+    calendarId: "primary",
+    resource: event
+  });
+
+  request.execute(function(event) {
+    console.log(event.htmlLink);
+  });
+};
+
+// Fin de la Seccion de ADDEVENTO
